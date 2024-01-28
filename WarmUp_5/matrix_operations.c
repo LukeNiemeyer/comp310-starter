@@ -10,6 +10,10 @@ void addMatrices(int rows, int cols, int a[rows][cols], int b[rows][cols], int s
 }
 
 void multiplyMatrices(int rowsA, int colsA, int colsB, int a[rowsA][colsA], int b[colsA][colsB], int product[rowsA][colsB]) {
+    if (rowsA != colsB) {
+        printf("Error: Matrices do not conform for multiplication; A's rows do not equal B's columns\n");
+        exit(1);
+    }
     for (int i = 0; i < rowsA; i++) {
         for (int j = 0; j < colsB; j++) {
             product[i][j] = 0;
@@ -34,6 +38,11 @@ int main() {
     int secondMatrix[2][2] = {{5,6}, {7,8}};
     int sum[2][2]; 
     int product[2][2];
+    
+    if (sizeof(firstMatrix) != sizeof(secondMatrix)) {
+        printf("Error: Matrices do not conform for addition; dimensions do not match\n");
+        exit(1);
+    }
 
     addMatrices(2, 2, firstMatrix, secondMatrix, sum);
 
